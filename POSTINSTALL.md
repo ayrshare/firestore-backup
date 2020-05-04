@@ -21,6 +21,17 @@ Before you can use this extension, follow these steps to make the Cloud Function
 1. Select the role `Cloud Functions Invoker` from the role dropdown list. You may need to type in this role's name to pull it into the list.
 1. Click **Save**.
 
+```bash
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if false
+    }
+  }
+}
+```
+
 # See it in action
 
 You can test out this extension right away!

@@ -7,8 +7,7 @@ const backupFirestore = async () => {
   console.log('Backup Bucket: ', BUCKET);
   console.log('Backup Project: ', PROJECT_ID);
 
-  const col = COLLECTIONS.split(',');
-  console.log('Collections', col);
+  const col = COLLECTIONS ? COLLECTIONS.split(',') : [];
 
   const databaseName = client.databasePath(PROJECT_ID, "(default)");
 
@@ -23,14 +22,13 @@ const backupFirestore = async () => {
     })
     .then((responses) => {
       const response = responses[0];
-      console.log(`Operation Name: ${response["name"]}`);
-      console.log('Completed Firestore Backup');
+      console.log(`Completed Firestore Backup: ${response["name"]}`);
 
       return response;
     })
     .catch((err) => {
       console.error(err);
-      throw new Error("Firestore Export operation failed");
+      throw new Error("Firestore Export operation failed.");
     });
 };
 

@@ -15,7 +15,7 @@ description: >-
 license: Apache-2.0 # https://spdx.org/licenses/
 
 # Public URL for the source code of your extension
-sourceUrl: https://github.com/firebase/firebase-tools/tree/master/templates/extensions
+sourceUrl: https://github.com/fireRun-io/firestore-backup
 
 # Specify whether a paid-tier billing plan is required to use your extension.
 # Learn more in the docs: https://firebase.google.com/docs/extensions/alpha/ref-extension-yaml#billing-required-field
@@ -53,9 +53,9 @@ roles:
 # Learn more in the docs: https://firebase.google.com/docs/extensions/alpha/ref-extension-yaml#params-field
 params:
   - param: BUCKET
-    label: Cloud Storage Bucket Name
+    label: Cloud Storage Bucket URI
     description: >-
-      The Firebase Cloud Storage Bucket name where the backups will be stored. Format: gs://BUCKET_NAME
+      The Firebase Cloud Storage Bucket URI where the backups will be stored. Format: gs://BUCKET_NAME
     type: string
     required: true
     immutable: false
@@ -87,9 +87,10 @@ params:
     immutable: false
 
   - param: COLLECTIONS
-    label: The Firestore Collections to Backup
+    label: The Firestore Collections to Backup, comma separated (press enter for All Collections)
     description: >-
       Enter the Firestore Collections to backup, comma separated. Leave blank to backup all collections. Example: users, videos, dates
     type: string
-    required: true
+    default: ''
+    required: false
     immutable: false
