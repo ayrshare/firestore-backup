@@ -4,8 +4,8 @@ const client = new firestore.v1.FirestoreAdminClient();
 
 const backupFirestore = async () => {
   const { BUCKET, PROJECT_ID, COLLECTIONS } = process.env;
-  console.log('Backup Bucket: ', BUCKET);
-  console.log('Backup Project: ', PROJECT_ID);
+  console.log('Firestore Backup Bucket: ', BUCKET);
+  console.log('Firestore Backup Project: ', PROJECT_ID);
 
   const col = COLLECTIONS ? COLLECTIONS.split(',') : [];
 
@@ -34,7 +34,7 @@ const backupFirestore = async () => {
 
 exports.scheduledFirestoreBackup = functions.handler.pubsub.schedule.onRun(
   (message, context) => {
-    console.log('Starting Firestore Backup');
+    console.log('Starting Firestore Backup...');
     return backupFirestore();
   }
 );
