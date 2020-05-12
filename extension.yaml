@@ -9,7 +9,7 @@ displayName: Firestore Backup
 description: >-
   Backup your Firestore data to a Cloud Storage bucket
 
-license: Apache-2.0 # https://spdx.org/licenses/
+license: MIT # https://spdx.org/licenses/
 
 # Public URL for the source code of your extension
 sourceUrl: https://github.com/fireRun-io/firestore-backup
@@ -17,6 +17,16 @@ sourceUrl: https://github.com/fireRun-io/firestore-backup
 # Specify whether a paid-tier billing plan is required to use your extension.
 # Learn more in the docs: https://firebase.google.com/docs/extensions/alpha/ref-extension-yaml#billing-required-field
 billingRequired: false
+
+author:
+  authorName: fireRun.io
+  email: support@firerun.io
+  url: https://www.firerun.io
+
+contributors:
+  - authorName: Geoffrey Bourne
+    email: geoff@firerun.io
+    url: https://github.com/gbourne1
 
 # In an `apis` field, list any Google APIs (like Cloud Translation, BigQuery, etc.)
 # required for your extension to operate.
@@ -39,6 +49,18 @@ resources:
       scheduleTrigger:
         schedule: ${SCHEDULE}
 
+  #- name: storageChanged
+   # type: firebaseextensions.v1beta.function
+    #description: >-
+      #Track new files in storage
+    #properties:
+      #sourceDirectory: .
+      #location: us-central1
+      #runtime: "nodejs10"
+      #eventTrigger:
+        #eventType: google.storage.object.finalize
+        #resource: projects/_/buckets/${BUCKET}
+
 roles:
   - role: datastore.importExportAdmin
     reason: Gather the Firestore
@@ -46,13 +68,16 @@ roles:
   - role: storage.objectCreator
     reason: Store data in Cloud Storage
 
+  #- role: cloudscheduler.admin
+    #reason: Schedule the job
+
 # In the `params` field, set up your extension's user-configured parameters.
 # Learn more in the docs: https://firebase.google.com/docs/extensions/alpha/ref-extension-yaml#params-field
 params:
   - param: BUCKET
-    label: Cloud Storage Bucket URI
+    label: Cloud Storage Bucket Name
     description: >-
-      The Firebase Cloud Storage Bucket URI where the backups will be stored. Format: gs://BUCKET_NAME
+      The Firebase Cloud Storage Bucket name where the backups will be stored. Format: BUCKET_NAME (do not prepend with gs://)
     type: string
     required: true
     immutable: false
@@ -88,6 +113,6 @@ params:
     description: >-
       Enter the Firestore Collections to backup, comma separated. Leave blank to backup all collections. Example: users, videos, dates
     type: string
-    default: ''
+    default: ""
     required: false
     immutable: false

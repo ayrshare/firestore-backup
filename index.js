@@ -7,28 +7,25 @@ const backupFirestore = async () => {
   console.log('Firestore Backup Bucket: ', BUCKET);
   console.log('Firestore Backup Project: ', PROJECT_ID);
 
-  const col = COLLECTIONS ? COLLECTIONS.split(',') : [];
+  const col = COLLECTIONS ? COLLECTIONS.split(',') : [];    // Empty if all collections, or array of collection names
 
   const databaseName = client.databasePath(PROJECT_ID, "(default)");
 
   return client
     .exportDocuments({
       name: databaseName,
-      outputUriPrefix: BUCKET,
-      // Leave collectionIds empty to export all collections
-      // or set to a list of collection IDs to export,
-      // collectionIds: ['users', 'posts']
+      outputUriPrefix: 'gs://' + BUCKET,
       collectionIds: col,
     })
-    .then((responses) => {
-      const response = responses[0];
-      console.log(`Completed Firestore Backup: ${response["name"]}`);
+    .then((res) => {
+      const data = res[0];
+      console.log(`Completed Firestore Backup: ${data["name"]} at ${data.metadata.outputUriPrefix}`);
 
-      return response;
+      return data;
     })
     .catch((err) => {
       console.error(err);
-      throw new Error("Firestore Export operation failed.");
+      throw new Error("Firestore Backup failed.");
     });
 };
 
@@ -38,3 +35,9 @@ exports.scheduledFirestoreBackup = functions.handler.pubsub.schedule.onRun(
     return backupFirestore();
   }
 );
+
+/*
+exports.storageChanged = functions.handler.storage.object.onFinalize((object) => {
+  console.log('Storage be changing: ' + JSON.stringify(object, null, 2));
+});
+*/
