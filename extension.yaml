@@ -39,7 +39,7 @@ contributors:
 # Learn more in the docs: https://firebase.google.com/docs/extensions/alpha/ref-extension-yaml#resources-field
 resources:
   - name: scheduledFirestoreBackup
-    type: firebaseextensions.v1beta.scheduledFunction
+    type: firebaseextensions.v1beta.function
     description: >-
       Backup the Firestore data
     properties:
