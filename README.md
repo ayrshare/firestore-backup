@@ -114,6 +114,6 @@ You are all set up! You will start receiving your daily report the next day. You
 
 If you want to restore your Firestore from a Cloud Storage backup, please follow these import [instructions](https://firebase.google.com/docs/firestore/manage-data/export-import#import_data).
 
-## Questions or Help
+## More Info
 
-Please [email](mailto:support@firerun.io) or [chat](https://go.crisp.chat/chat/embed/?website_id=ce918297-24bc-46f8-bf19-b66c3eb6aabe) with us for any questions or comments.
+Brought to you by [Ayrshare's Social Media APIs](https://www.ayrshare.com)
