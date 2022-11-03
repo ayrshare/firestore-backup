@@ -19,9 +19,9 @@ sourceUrl: https://github.com/fireRun-io/firestore-backup
 billingRequired: false
 
 author:
-  authorName: fireRun.io
-  email: support@firerun.io
-  url: https://www.firerun.io
+  authorName: ayrshare.com
+  email: support@ayrshare.com
+  url: https://www.ayrshare.com
 
 contributors:
   - authorName: Geoffrey Bourne
@@ -45,7 +45,7 @@ resources:
     properties:
       sourceDirectory: .
       location: us-central1
-      runtime: "nodejs12"
+      runtime: "nodejs16"
       scheduleTrigger:
         schedule: ${SCHEDULE}
 
@@ -96,6 +96,10 @@ params:
         value: every 30 minutes
       - label: Every 1 hour
         value: every 1 hours
+      - label: Every 2 hours
+        value: every 2 hours
+      - label: Every 6 hours
+        value: every 6 hours
       - label: Every 12 hours
         value: every 12 hours
       - label: Every 24 hours
