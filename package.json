@@ -3,7 +3,7 @@
   "description": "Firestore Backup",
   "main": "index.js",
   "dependencies": {
-    "firebase-admin": "^9.2.0",
+    "firebase-admin": "^11.4.1",
     "firebase-functions": "^3.11.0"
   },
   "devDependencies": {
