@@ -13,5 +13,8 @@
   "scripts": {
     "lint": "./node_modules/.bin/eslint --max-warnings=0 .."
   },
-  "private": true
+  "private": true,
+  "overrides": {
+    "uuid": "^11.1.1"
+  }
 }
